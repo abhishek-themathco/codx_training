@@ -247,23 +247,47 @@ dynamic_outputs = json.dumps(container_dict)
 # In[5]:
 
 
-dynamic_visual_reponse={
-    "Plot": response_0,
-    "Table": response_1,
-    "Color_Table": response_2, 
-   
-}
+response_3 = """
+import plotly.express as px
+import pandas as pd
+import numpy as np
+import json
+import plotly.io as io
+import sklearn
+from sklearn import datasets
+import plotly.graph_objects as go
 
-results_json.append({
-    'type':'Dynamic_plot',
-    'name': 'plot',
-    'component':'plot',
-    'dynamic_visual_results': dynamic_visual_reponse,
-    'dynamic_code_filters':False,
-    'dynamic_metrics_results':False,
-    'metrics':False
-           
-})
+def plotGraph():
+    
+    x = np.linspace(1, 10, 11)
+    y = x**2
+    
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=x,y=y, name= 'Line Plot', mode='lines'))
+    # fig.show()
+    return io.to_json(fig)
+
+dynamic_outputs = plotGraph()
+
+"""
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # ### Please save and checkpoint notebook before submitting params
@@ -272,7 +296,7 @@ results_json.append({
 
 
 
-currentNotebook = 'Training-S02-Group-1_202303040955.ipynb'
+currentNotebook = 'Training-S02-Group-1_202303041031.ipynb'
 
 get_ipython().system('jupyter nbconvert --to script {currentNotebook} ')
 
@@ -281,5 +305,5 @@ get_ipython().system('jupyter nbconvert --to script {currentNotebook} ')
 
 
 
-utils.submit_config_params(url='https://codex-api-stage.azurewebsites.net/codex-api/projects/upload-config-params/KdEveq8uP-khG77_0i5wIA', nb_name=currentNotebook, results=results_json, codex_tags=codex_tags, args={})
+utils.submit_config_params(url='https://codex-api-stage.azurewebsites.net/codex-api/projects/upload-config-params/kT1EfORRScW-RRTVPETVzA', nb_name=currentNotebook, results=results_json, codex_tags=codex_tags, args={})
 
